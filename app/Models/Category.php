@@ -21,6 +21,13 @@ class Category extends Model
         return $this->hasMany(Product::class);
     }
 
+    protected static function booted(): void
+    {
+        static::creating(function ($category) {
+            $category->status = $category->status ?? CategoryStatus::DISABLED;
+        });
+    }
+
     protected function casts(): array
     {
         return [

@@ -17,8 +17,8 @@ class ProductFactory extends Factory
         return [
             'name' => fake()->word(),
             'price' => fake()->randomFloat(2, 1, 100),
-            'picture' => fake()->imageUrl(640, 480, 'products', true),
-            'status' => fake()->randomElement(['ACTIVE', 'DRAFT', 'DISABLED']),
+            'picture' => fake()->uuid() . '.jpg',
+            'status' => fake()->randomElement(['active', 'draft', 'disabled']),
             'category_id' => Category::factory(),
         ];
     }

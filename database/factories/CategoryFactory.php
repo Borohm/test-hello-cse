@@ -15,8 +15,8 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => fake()->word(),
-            'picture' => fake()->imageUrl(640, 480, 'categories', true),
-            'status' => fake()->randomElement(['ACTIVE', 'DISABLED', 'ARCHIVED']),
+            'picture' => fake()->uuid() . '.jpg',
+            'status' => fake()->randomElement(['active', 'disabled', 'archived']),
         ];
     }
 }

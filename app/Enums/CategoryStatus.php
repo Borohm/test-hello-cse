@@ -2,12 +2,12 @@
 
 namespace App\Enums;
 
-enum CategoryStatus
+enum CategoryStatus: string
 {
-    case ACTIVE;
-    case DISABLED;
-    case ARCHIVED;
-    
+    case ACTIVE = 'active';
+    case DISABLED = 'disabled';
+    case ARCHIVED = 'archived';
+
     public function label(): string
     {
         return match($this) {

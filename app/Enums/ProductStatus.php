@@ -2,11 +2,11 @@
 
 namespace App\Enums;
 
-enum ProductStatus
+enum ProductStatus: string
 {
-    case ACTIVE;
-    case DRAFT;
-    case DISABLED;
+    case ACTIVE = 'active';
+    case DRAFT = 'draft';
+    case DISABLED = 'disabled';
 
     public function label(): string
     {

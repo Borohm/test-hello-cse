@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->decimal('price', 10, 2);
             $table->string('picture')->nullable();
-            $table->enum('status', ['ACTIVE', 'DRAFT', 'DISABLED'])->default('DRAFT');
+            $table->enum('status', ['active', 'draft', 'disabled'])->default('draft');
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

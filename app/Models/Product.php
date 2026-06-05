@@ -23,6 +23,13 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    protected static function booted(): void
+    {
+        static::creating(function ($product) {
+            $product->status = $product->status ?? ProductStatus::DRAFT;
+        });
+    }
+
     protected function casts(): array
     {
         return [
