@@ -60,3 +60,9 @@ make install
 ## Utilisation de l'API
 ### Documentation Swagger :
 Pour tester l'API, une documentation Swagger est disponible sur l'url suivante : http://localhost/api/documentation
+
+### Tests unitaires :
+Pour vérifier les tests unitaires, lancer la commande suivante:
+```
+make test
+```

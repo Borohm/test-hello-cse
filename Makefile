@@ -26,4 +26,6 @@ fresh:
 	$(SAIL) artisan migrate:fresh --seed
 
 test:
+	$(SAIL) exec mysql mysql -u sail -ppassword -e "CREATE DATABASE IF NOT EXISTS testing;"
+	$(SAIL) artisan migrate:fresh --env=testing
 	$(SAIL) test
