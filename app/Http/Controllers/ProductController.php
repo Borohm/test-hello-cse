@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use App\Http\Resources\ProductResource;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use OpenApi\Attributes as OA;
@@ -22,6 +23,20 @@ class ProductController extends Controller
             path: "/api/products",
             summary: "Get all products",
             tags: ["Products"],
+            parameters: [
+                new OA\Parameter(
+                    name: "category_id",
+                    in: "query",
+                    description: "Filtre par catégorie",
+                    required: false,
+                    schema: new OA\Schema(
+                        oneOf: [
+                            new OA\Schema(type: "string"),
+                            new OA\Schema(type: "array", items: new OA\Items(type: "string"))
+                        ]
+                    )
+                )
+            ],
             responses: [
                 new OA\Response(
                     response: Response::HTTP_OK,
@@ -34,9 +49,9 @@ class ProductController extends Controller
             ]
         )
     ]
-    public function index(): AnonymousResourceCollection
+    public function index(Request $request): AnonymousResourceCollection
     {
-        return ProductResource::collection(Product::all());
+        return $this->productService->index($request->query('category_id'));
     }
 
     #[
