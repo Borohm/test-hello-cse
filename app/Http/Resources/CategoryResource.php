@@ -15,7 +15,7 @@ use OpenApi\Attributes as OA;
         new OA\Property(property: "name", type: "string", example: "Category Name"),
         new OA\Property(property: "picture", type: "url", example: "http://localhost/storage/category.jpg"),
         new OA\Property(property: "status", type: "string", enum: ["active", "disabled", "archived"], example: "active"),
-        new OA\Property(property: "number_of_products", type: "integer", example: 5)
+        new OA\Property(property: "number_of_online_products", type: "integer", example: 5)
     ]
 )]
 class CategoryResource extends JsonResource
@@ -27,7 +27,7 @@ class CategoryResource extends JsonResource
             'name' => $this->name,
             'picture' => $this->picture ? asset('storage/' . $this->picture) : null,
             'status' => $this->status->label(),
-            'number_of_products' => $this->products->count()
+            'number_of_online_products' => $this->products->where('status', 'active')->count()
         ];
     }
 }

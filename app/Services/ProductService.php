@@ -18,7 +18,6 @@ class ProductService
     public function index(string|array|null $categoryId): AnonymousResourceCollection
     {
         $query = Product::query();
-        error_log($categoryId);
         if (is_array($categoryId)) {
             $query->whereIn('category_id', $categoryId);
         } else if (null !== $categoryId) {
